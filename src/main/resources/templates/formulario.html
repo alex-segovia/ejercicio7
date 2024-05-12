@@ -7,5 +7,25 @@
     </head>
     <body>
 
+        <div class="container mt-5">
+            <form method="post" th:action="@{'/personaje/save'}" th:object="${character}">
+                <input name="tipo" th:value="${tipo}" type="hidden">
+                <input th:field="*{id}" type="hidden">
+
+
+
+
+
+
+
+
+            </form>
+
+
+
+        </div>
+
+
+
     </body>
 </html>
