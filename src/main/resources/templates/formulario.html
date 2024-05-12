@@ -6,26 +6,95 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
     <body>
-
         <div class="container mt-5">
+            <h2 class="mb-4" th:text="${tipo=='crear'?'Crear personaje':'Editar personaje'}"></h2>
             <form method="post" th:action="@{'/personaje/save'}" th:object="${character}">
                 <input name="tipo" th:value="${tipo}" type="hidden">
                 <input th:field="*{id}" type="hidden">
-
-
-
-
-
-
-
-
+                <div class="form-group mb-4">
+                    <label>Nombre</label>
+                    <input th:field="*{name}" type="text" class="form-control" th:classappend="${#fields.hasErrors('name')?'is-invalid':''}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Wiki URL (http://marvel.fandom.com/wiki)</label>
+                    <input th:field="*{url}" type="text" class="form-control" th:classappend="${#fields.hasErrors('url')?'is-invalid':''}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Identidad</label>
+                    <select class="form-control" th:field="*{identity}" th:classappend="${#fields.hasErrors('identity')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Identidad--</option>
+                        <option th:each="identidad,info: ${listaIdentidad}" th:value="${identidad}" th:text="${identidad}" th:selected="${identidad}==*{identity}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('identity')}" th:errors="*{identity}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Alineación</label>
+                    <select class="form-control" th:field="*{align}" th:classappend="${#fields.hasErrors('align')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Alineación--</option>
+                        <option th:each="alineacion,info: ${listaAlineacion}" th:value="${alineacion}" th:text="${alineacion}" th:selected="${alineacion}==*{align}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('align')}" th:errors="*{align}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Ojos</label>
+                    <select class="form-control" th:field="*{eye}" th:classappend="${#fields.hasErrors('eye')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Ojos--</option>
+                        <option th:each="ojos,info: ${listaOjos}" th:value="${ojos}" th:text="${ojos}" th:selected="${ojos}==*{eye}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('eye')}" th:errors="*{eye}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Cabello</label>
+                    <select class="form-control" th:field="*{hair}" th:classappend="${#fields.hasErrors('hair')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Cabello--</option>
+                        <option th:each="cabello,info: ${listaCabello}" th:value="${cabello}" th:text="${cabello}" th:selected="${cabello}==*{hair}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('hair')}" th:errors="*{hair}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Sexo</label>
+                    <select class="form-control" th:field="*{sex}" th:classappend="${#fields.hasErrors('sex')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Sexo--</option>
+                        <option th:each="sexo,info: ${listaSexo}" th:value="${sexo}" th:text="${sexo}" th:selected="${sexo}==*{sex}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>GSM</label>
+                    <select class="form-control" th:field="*{gsm}" th:classappend="${#fields.hasErrors('gsm')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione GSM--</option>
+                        <option th:each="genero,info: ${listaGSM}" th:value="${genero}" th:text="${genero}" th:selected="${genero}==*{gsm}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('gsm')}" th:errors="*{gsm}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Vivo o muerto</label>
+                    <select class="form-control" th:field="*{alive}" th:classappend="${#fields.hasErrors('alive')?'is-invalid':''}">
+                        <option th:value="0">--Seleccione Vivo o Muerto--</option>
+                        <option th:each="vida,info: ${listaAlive}" th:value="${vida}" th:text="${vida}" th:selected="${vida}==*{alive}"></option>
+                    </select>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('alive')}" th:errors="*{alive}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Apariciones</label>
+                    <input th:field="*{appearances}" type="text" class="form-control" th:classappend="${#fields.hasErrors('appearances')?'is-invalid':''}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('appearances')}" th:errors="*{appearances}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Primera aparición</label>
+                    <input th:field="*{firstAppearance}" type="text" class="form-control" th:classappend="${#fields.hasErrors('firstAppearance')?'is-invalid':''}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('firstAppearance')}" th:errors="*{firstAppearance}"></div>
+                </div>
+                <div class="form-group mb-4">
+                    <label>Año</label>
+                    <input th:field="*{year}" type="text" class="form-control" th:classappend="${#fields.hasErrors('year')?'is-invalid':''}">
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+                </div>
+                <a th:href="@{'/personaje/list'}" class="btn btn-danger">Cancelar</a>
+                <button type="submit" class="btn btn-primary" th:text="${tipo=='crear'?'Guardar':'Actualizar'}"></button>
             </form>
-
-
-
         </div>
-
-
-
     </body>
 </html>
