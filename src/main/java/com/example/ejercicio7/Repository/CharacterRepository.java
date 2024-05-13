@@ -1,5 +1,6 @@
 package com.example.ejercicio7.Repository;
 
+import com.example.ejercicio7.Entity.Character;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
