@@ -114,7 +114,7 @@ public class CharacterController {
             model.addAttribute("tipo",tipo);
             return "formulario";
         }else{
-            attr.addFlashAttribute("mensaje","Personaje " + (character.getId()==0?"creado ":"actualizado ") + "exitosamente");
+            attr.addFlashAttribute("mensaje","Personaje " + (character.getId()==null?"creado ":"actualizado ") + "exitosamente");
             character.setIdentity(character.getIdentity().equals("0")?null:character.getIdentity());
             character.setAlign(character.getAlign().equals("0")?null:character.getAlign());
             character.setEye(character.getEye().equals("0")?null:character.getEye());
